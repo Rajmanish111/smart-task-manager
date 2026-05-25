@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.tsk.entity.Task;
 import com.tsk.entityDTO.TaskDTO;
+import com.tsk.exception.ResourceNotFoundException;
 import com.tsk.repository.iRepo;
 
 @Service
@@ -34,12 +35,12 @@ public class ImplService implements iTaskService {
 
 	@Override
 	public Task getById(Long id) {
-		return repo.findById(id).orElseThrow(() -> new RuntimeException("task not found"));
+		return repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
 	}
 
 	@Override
 	public Task updateTask(Long id, Task task) {
-		Task existing = repo.findById(id).orElseThrow(() -> new RuntimeException("user Not found"));
+		Task existing = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Task not found with id to update task: " + id));
 
 		existing.setTitle(task.getTitle());
 		existing.setDescription(task.getDescription());

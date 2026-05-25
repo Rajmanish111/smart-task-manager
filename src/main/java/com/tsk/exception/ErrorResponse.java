@@ -1,0 +1,30 @@
+package com.tsk.exception;
+
+public class ErrorResponse {
+
+    private String message;
+    private int status;
+
+    public ErrorResponse(String message, int status) {
+        this.message = message;
+        this.status = status;
+    }
+
+    // Getters
+    public String getMessage() {
+        return message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    // Setters (optional but good practice)
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+}
