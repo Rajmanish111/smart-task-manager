@@ -6,9 +6,14 @@ import com.tsk.entity.Task;
 import com.tsk.entityDTO.TaskDTO;
 
 public interface iTaskService {
-	   Task createTask(TaskDTO taskdto);
-	    List<Task> getAllTasks();
-      Task getById(Long id);
-       Task updateTask(Long id , Task task);
-       void deleteTask(Long id);
+
+    Task createTask(TaskDTO taskdto);
+
+    List<Task> getAllTasks();
+
+    Task getById(Long id);
+
+    Task updateTask(Long id, TaskDTO taskdto);
+
+    void deleteTask(Long id);
 }

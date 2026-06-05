@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tsk.entity.Task;
+import com.tsk.entity.User;
 import com.tsk.entityDTO.TaskDTO;
 import com.tsk.service.ImplService;
 
@@ -45,15 +46,22 @@ public class TaskController {
 	return service.getById(id);
 	 
  }
+ @PostMapping("/login")
+ public String login(@RequestBody User user) {
+     return "Login logic coming next...";
+ }
  
  @DeleteMapping("deletebyid/{id}")
  public String deleteById(@PathVariable Long id) {
 	 service.deleteTask(id);
 	return "Task deleted";
  }
- @PutMapping("updatebyid/{id}")
- public Task UpdateById(@PathVariable Long id, @RequestBody Task task) {
-	 return service.updateTask(id, task);
+ @PutMapping("/updatebyid/{id}")
+ public ResponseEntity<Task> updateById(
+         @PathVariable Long id,
+         @Valid @RequestBody TaskDTO taskdto) {
+
+     Task updatedTask = service.updateTask(id, taskdto);
+     return ResponseEntity.ok(updatedTask);
  }
-	
 }
